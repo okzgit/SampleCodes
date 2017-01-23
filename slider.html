@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head><title>Image Slider</title></head>
+<body onload="setCurrentIndex();automaticly()">
+	<form NAME="form1" align="center">
+
+<table BORDER="1" width="100%">
+<tbody>
+	<tr>
+		<td><input type="button" value="&lt;&lt; Previous" name="previous" onClick="Backer()"></td>
+		<td width="100%"><img src="" NAME="theImage" HEIGHT="120" WIDTH="120"></td>
+		<td><input type="button" value="Next &gt;&gt;" name="next" onClick="Nexter()">&nbsp;<span id="sp1"></span></td>
+	</tr>
+</tbody>
+
+
+</table>
+
+</form>
+<script type="text/javascript">
+	currentIndx=0;
+MyImages=new Array();
+MyImages[0]='.jpg';
+
+MyImages[1]='.jpg';
+
+MyImages[2]='.jpg';
+
+MyImages[3]='.jpg';
+imagesPreloaded = new Array(4)
+for (var i = 0; i < MyImages.length ; i++)
+
+{ 
+	imagesPreloaded[i] = new Image(400,250)
+
+imagesPreloaded[i].src=MyImages[i]
+
+}
+	
+	function setCurrentIndex()
+{
+currentIndx=0;
+document.theImage.src=MyImages[0];
+document.form1.text1.value=Messages[0];
+writeImageNumber();
+}
+	function automaticly() {
+    if (document.form1.automatic.checked) {
+if (currentIndx<imagesPreloaded.length){
+currentIndx=currentIndx
+}
+else {
+ currentIndx=0
+}
+writeImageNumber()
+document.theImage.src=imagesPreloaded[currentIndx].src
+document.form1.text1.value=Messages[currentIndx];
+currentIndx=currentIndx+1;
+var delay = setTimeout("automaticly()",3500)
+    }
+}
+	function Nexter(){
+if (currentIndx<imagesPreloaded.length-1){
+currentIndx=currentIndx+1;
+document.theImage.src=imagesPreloaded[currentIndx].src
+document.form1.text1.value=Messages[currentIndx];
+}
+else {
+ currentIndx=0
+document.theImage.src=imagesPreloaded[currentIndx].src
+document.form1.text1.value=Messages[currentIndx];
+}
+writeImageNumber();
+}
+function Backer(){
+if (currentIndx>0){
+currentIndx=currentIndx-1;
+document.theImage.src=imagesPreloaded[currentIndx].src
+document.form1.text1.value=Messages[currentIndx];
+}
+else {
+ currentIndx=3
+document.theImage.src=imagesPreloaded[currentIndx].src
+document.form1.text1.value=Messages[currentIndx];
+}
+}	
+</script>
+	</body>
+</html>
